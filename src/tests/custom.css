@@ -1,0 +1,131 @@
+html, body {
+    margin:0;
+    padding:0;
+    background-color:#000;
+    color:#FFFFFF;
+}
+.breadcrumb {
+    background-color: #101010;
+    color: #FFFFFF;
+    margin:0;
+    padding:5px;
+}
+.breadcrumb-item.active {
+	color: #FFFFFF;
+}
+header > .container-fluid,
+body > .container-fluid {
+    padding:0;
+}
+footer > hr,
+footer > h4,
+footer > p > small {
+    display:none;
+}
+
+
+.table {
+	color:#FFF;
+}
+.table-bordered td, .table-bordered th {
+	border: 1px solid #101010;
+}
+.progress {
+    background-color: #101010 !important;
+}
+
+
+.success {
+    background-color: #000900 !important;
+    color: #50FF50 !important;
+}
+.warning {
+    background-color: #191500 !important;
+    color: #FF9000 !important;
+}
+.danger {
+    background-color: #070000 !important;
+    color:#FF8080 !important;
+}
+
+
+.table tbody tr.covered-by-large-tests, li.covered-by-large-tests, tr.success, td.success, li.success, span.success {
+	background-color: #000900 !important;
+    color: #50FF50 !important;
+}
+
+.table tbody tr.covered-by-medium-tests, li.covered-by-medium-tests {
+    background-color: #000900 !important;
+    color: #50FF50 !important;
+}
+
+.table tbody tr.covered-by-small-tests, li.covered-by-small-tests {
+    background-color: #000900 !important;
+    color: #50FF50 !important;
+}
+
+.table tbody tr.danger, .table tbody td.danger, li.danger, span.danger {
+    background-color: #070000 !important;
+    color:#FF8080 !important;
+}
+
+.table tbody tr.warning, .table tbody td.warning, li.warning, span.warning {
+    background-color: #191500 !important;
+    color: #FF9000 !important;
+}
+
+.table tbody td.info {
+    background-color: #101010 !important;
+    color: #FFFFFF !important;
+}
+
+
+.covered-by-small-tests {
+    background-color: #000900 !important;
+}
+   
+.covered-by-medium-tests {
+    background-color: #000900 !important;
+}
+   
+.covered-by-large-tests {
+    background-color: #000900 !important;
+}
+   
+.not-covered {
+    background-color: #191500 !important;
+}
+
+.not-coverable {
+    background-color: #191500 !important;
+}
+
+.popover {
+    background-color: #101010 !important;
+}
+.popover * {
+    background-color: #101010 !important;
+}
+
+
+
+td span.comment {
+    color:#FFF !important;
+}
+   
+td span.default {
+    color:#FFF !important;
+}
+   
+td span.html {
+    color:#FFF !important;
+}
+   
+td span.keyword {
+    color:#FFF !important;
+    font-weight: bold;
+}
+   
+pre span.string {
+    color:#FFF !important;
+}

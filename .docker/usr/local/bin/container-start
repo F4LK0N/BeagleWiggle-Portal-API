@@ -1,0 +1,66 @@
+#!/bin/sh
+set -e
+
+forceRun=$1;
+
+echo_h1 "CONTAINER - START";
+#if [[ -f "/run/container/start-done" ]] && [[ "${forceRun}" == '' ]]; then
+#    echo "[===]";
+#else
+    fsSetup_echoHeader h2;
+    fsSetup_clearErrors;
+    # Container
+    fsSetup 777 root root /run/container/ TRUNCATE;
+    fsSetup 777 root root ${ROOT_DATA}/;
+    fsSetup 777 root root ${ROOT_LOGS}/;
+    # OS
+    fsSetup 777 root root ${OS_DATA}/;
+    fsSetup 777 root root ${OS_LOGS}/;
+    # Apache
+    fsSetup 777 apache apache ${HTTPD_DATA}/;
+    fsSetup 777 apache apache ${HTTPD_LOGS}/;
+    fsSetup 777 apache apache ${HTTPD_LOGS}/errors.log TRUNCATE;
+    fsSetup 777 apache apache ${HTTPD_LOGS}/access.log TRUNCATE;
+    fsSetup 777 apache apache ${HTTPD_LOGS}/profiling.log TRUNCATE;
+    fsSetup 777 apache apache /run/apache2/;
+    fsSetup 777 apache apache /run/apache2/mutex/ TRUNCATE;
+    #fsSetup 644 root   root   /run/apache2/httpd.pid TRUNCATE;
+    fsSetup 777 apache apache /run/apache2/runtime.d/ TRUNCATE;
+    # PHP
+    fsSetup 777 root root ${PHP_DATA}/;
+    fsSetup 777 root root ${PHP_DATA}/tmp/ TRUNCATE;
+    fsSetup 777 root root ${PHP_DATA}/uploads/ TRUNCATE;
+    fsSetup 770 root root ${PHP_DATA}/opcache/;
+    fsSetup 770 root root ${PHP_DATA}/opcache-lock/;
+    fsSetup 777 root root ${PHP_DATA}/sessions/;
+    fsSetup 777 root root ${PHP_DATA}/soap/;
+    fsSetup 777 root root ${PHP_LOGS}/;
+    fsSetup 777 root root ${PHP_LOGS}/errors.log TRUNCATE;
+    fsSetup 777 root root ${PHP_LOGS}/xdebug.log TRUNCATE;
+    fsSetup 777 root root ${PHP_LOGS}/xdebug/ TRUNCATE;
+    #fsSetup 777 root root ${PHP_LOGS}/cover-app/;
+    #fsSetup 777 root root ${PHP_LOGS}/cover-core/;
+    # Application
+    fsSetup 777 root root ${APP_ROOT}/;
+    fsSetup 777 root root ${APP_ROOT}/public/;
+    fsSetup 777 root root ${APP_ROOT}/vendor/bin/;
+    # Container
+    #fsSetup 777 root root /run/container/start-done;
+
+    echo_h2 LOGS - OS;
+    if [[ ! -e "${OS_LOGS}/logs-link" ]]; then
+        ln -s "/var/log" "${OS_LOGS}/logs-link"
+        chmod 777 "${OS_LOGS}/logs-link"
+    fi
+
+    #echo "### COMPOSER - DUMP AUTOLOAD ###";
+    #composer dump-autoload --classmap-authoritative --optimize -d ${APP_ROOT};
+
+    echo "[DONE]"
+    echo_h2;
+    if [ $(fsSetup_hasErrors) == '1' ]; then
+        echo "[ERROR]";
+        exit 1;
+    fi
+
+#fi

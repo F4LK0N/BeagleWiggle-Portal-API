@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+    
+    stopOnError="true"
+    stopOnFailure="true"
+    
+    cacheResult="false"
+    colors="true"
+    columns="40"
+    bootstrap="tests/loader-core.php"
+>
+    <testsuites>
+        <testsuite name="default">
+            <directory>tests/core</directory>
+        </testsuite>
+    </testsuites>
+    <coverage
+        includeUncoveredFiles="true"
+    >
+        <include>
+            <directory suffix=".php">core</directory>
+        </include>
+        <report>
+            <html
+                outputDirectory="/logs/php/cover-core/"
+                lowUpperBound="70"
+                highLowerBound="95"
+            />
+        </report>
+    </coverage>
+</phpunit>

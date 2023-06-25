@@ -1,0 +1,196 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        //{
+        //    "label": "DockerTools",
+        //    "type": "shell",
+        //    "command": "/home/falkon/PROJECTS/News/API/.docker/docker-tools",
+        //    "presentation": {
+        //        "clear": true
+        //    }
+        //},
+        //######################################################################
+        //### DOCKER COMPOSE ###
+        //######################################################################
+        {
+            "label": "DC-Build",
+            "type": "shell",
+            "command": "docker compose build",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "DC-UpD",
+            "type": "shell",
+            "command": "docker compose up -d",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "DC-UpDBuild",
+            "type": "shell",
+            "command": "docker compose up -d --build",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "DC-Down",
+            "type": "shell",
+            "command": "docker compose down",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        //######################################################################
+        //### DOCKER CONTAINER SHELL ###
+        //######################################################################
+        {
+            "label": "CS-API",
+            "type": "shell",
+            "command": "docker compose exec -it api /bin/sh",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "CS-SQL",
+            "type": "shell",
+            "command": "docker compose exec -it sql /bin/sh",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "CS-SQL-Panel",
+            "type": "shell",
+            "command": "docker compose exec -it sql-panel /bin/sh",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        //######################################################################
+        //### PHP COMPOSER ###
+        //######################################################################
+        {
+            "label": "PC-API-Install",
+            "type": "shell",
+            "command": "docker compose exec api composer install",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "PC-API-Update",
+            "type": "shell",
+            "command": "docker compose exec api composer update",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "PC-API-DAO",
+            "type": "shell",
+            "command": "docker compose exec api composer dao",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        //{
+        //    "label": "PC-API-DevSetup",
+        //    "type": "shell",
+        //    "command": "curl '127.0.0.1:8080/?RUN_MODE=DEV&DATA_MODE=SETUP'",
+        //    "problemMatcher": [],
+        //    "presentation": {
+        //        "clear": true
+        //    }
+        //},
+        //######################################################################
+        //### PHP UNIT ###
+        //######################################################################
+        {
+            "label": "TDD-API-Test",
+            "type": "shell",
+            "command": "docker compose exec api composer test",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "TDD-API-Dox",
+            "type": "shell",
+            "command": "docker compose exec api composer dox",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "TDD-API-Cover",
+            "type": "shell",
+            "command": "sudo rm -rf logs/api/php/cover-app/; docker compose exec api composer cover; sudo chmod -R 777 logs/api/php/cover-app/; sudo chown -R falkon:falkon logs/api/php/cover-app/",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "TDD-API-Path",
+            "type": "shell",
+            "command": "sudo rm -rf logs/api/php/cover-app/; docker compose exec api composer path; sudo chmod -R 777 logs/api/php/cover-app/; sudo chown -R falkon:falkon logs/api/php/cover-app/",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "TDD-API-CoreTest",
+            "type": "shell",
+            "command": "docker compose exec api composer core-test",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "TDD-API-CoreDox",
+            "type": "shell",
+            "command": "docker compose exec api composer core-dox",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "TDD-API-CoreCover",
+            "type": "shell",
+            "command": "sudo rm -rf logs/api/php/cover-core/; docker compose exec api composer core-cover; sudo chmod -R 777 logs/api/php/cover-core/; sudo chown -R falkon:falkon logs/api/php/cover-core/",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "TDD-API-CorePath",
+            "type": "shell",
+            "command": "sudo rm -rf logs/api/php/cover-core/; docker compose exec api composer core-path; sudo chmod -R 777 logs/api/php/cover-core/; sudo chown -R falkon:falkon logs/api/php/cover-core/",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        }
+    ]
+}

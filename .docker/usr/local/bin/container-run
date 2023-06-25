@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+echo_h1 "CONTAINER - RUN";
+echo "[RUNNING]";
+echo "Apache - Server Daemon";
+
+exec httpd -D FOREGROUND

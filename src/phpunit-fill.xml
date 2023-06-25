@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+    cacheResult="false"
+    colors="true"
+    columns="40"
+    bootstrap="tests/loader-fill.php"
+>
+    <testsuites>
+        <testsuite name="default">
+            <directory>tests/fill</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+clear;
+echo ' ';
+
+container-start
+exec container-run "$@"

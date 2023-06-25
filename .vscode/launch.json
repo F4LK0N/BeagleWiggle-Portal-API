@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "News API",
+            "type": "php",
+            "request": "launch",
+            //"hostname": "172.17.0.1",
+            "hostname": "172.19.0.1",
+            "port": 9003,
+            "pathMappings": {
+                "/src": "/home/falkon/_PROJECTS/News/API/src/"
+            }
+        }
+    ]
+}
