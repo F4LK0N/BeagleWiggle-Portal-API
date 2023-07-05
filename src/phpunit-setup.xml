@@ -2,6 +2,10 @@
 <phpunit 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+    
+    stopOnError="true"
+    stopOnFailure="true"
+    
     cacheResult="false"
     colors="true"
     columns="40"

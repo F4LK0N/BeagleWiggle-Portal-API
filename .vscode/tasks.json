@@ -1,14 +1,6 @@
 {
     "version": "2.0.0",
     "tasks": [
-        //{
-        //    "label": "DockerTools",
-        //    "type": "shell",
-        //    "command": "/home/falkon/PROJECTS/News/API/.docker/docker-tools",
-        //    "presentation": {
-        //        "clear": true
-        //    }
-        //},
         //######################################################################
         //### DOCKER COMPOSE ###
         //######################################################################
@@ -48,31 +40,22 @@
                 "clear": true
             }
         },
+        {
+            "label": "DC-Logs",
+            "type": "shell",
+            "command": "docker compose logs portal-api",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
         //######################################################################
         //### DOCKER CONTAINER SHELL ###
         //######################################################################
         {
-            "label": "CS-API",
+            "label": "CS-PORTAL-API",
             "type": "shell",
-            "command": "docker compose exec -it api /bin/sh",
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "CS-SQL",
-            "type": "shell",
-            "command": "docker compose exec -it sql /bin/sh",
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "CS-SQL-Panel",
-            "type": "shell",
-            "command": "docker compose exec -it sql-panel /bin/sh",
+            "command": "docker compose exec -it portal-api /bin/sh",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
@@ -82,111 +65,120 @@
         //### PHP COMPOSER ###
         //######################################################################
         {
-            "label": "PC-API-Install",
+            "label": "PC-Install",
             "type": "shell",
-            "command": "docker compose exec api composer install",
+            "command": "docker compose exec portal-api composer install",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "PC-API-Update",
+            "label": "PC-Update",
             "type": "shell",
-            "command": "docker compose exec api composer update",
+            "command": "docker compose exec portal-api composer update",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "PC-API-DAO",
+            "label": "PC-DAO",
             "type": "shell",
-            "command": "docker compose exec api composer dao",
+            "command": "docker compose exec portal-api composer dao",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
-        //{
-        //    "label": "PC-API-DevSetup",
-        //    "type": "shell",
-        //    "command": "curl '127.0.0.1:8080/?RUN_MODE=DEV&DATA_MODE=SETUP'",
-        //    "problemMatcher": [],
-        //    "presentation": {
-        //        "clear": true
-        //    }
-        //},
+        {
+            "label": "PC-Setup",
+            "type": "shell",
+            "command": "docker compose exec portal-api composer setup",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "PC-Fill",
+            "type": "shell",
+            "command": "docker compose exec portal-api composer fill",
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
         //######################################################################
         //### PHP UNIT ###
         //######################################################################
         {
-            "label": "TDD-API-Test",
+            "label": "TDD-Test",
             "type": "shell",
-            "command": "docker compose exec api composer test",
+            "command": "docker compose exec portal-api composer test",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "TDD-API-Dox",
+            "label": "TDD-Dox",
             "type": "shell",
-            "command": "docker compose exec api composer dox",
+            "command": "docker compose exec portal-api composer dox",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "TDD-API-Cover",
+            "label": "TDD-Cover",
             "type": "shell",
-            "command": "sudo rm -rf logs/api/php/cover-app/; docker compose exec api composer cover; sudo chmod -R 777 logs/api/php/cover-app/; sudo chown -R falkon:falkon logs/api/php/cover-app/",
+            "command": "sudo rm -rf logs/php/cover-app/; docker compose exec portal-api composer cover; sudo chmod -R 777 logs/php/cover-app/; sudo chown -R falkon:falkon logs/php/cover-app/",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "TDD-API-Path",
+            "label": "TDD-Path",
             "type": "shell",
-            "command": "sudo rm -rf logs/api/php/cover-app/; docker compose exec api composer path; sudo chmod -R 777 logs/api/php/cover-app/; sudo chown -R falkon:falkon logs/api/php/cover-app/",
+            "command": "sudo rm -rf logs/php/cover-app/; docker compose exec portal-api composer path; sudo chmod -R 777 logs/php/cover-app/; sudo chown -R falkon:falkon logs/php/cover-app/",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "TDD-API-CoreTest",
+            "label": "TDD-CoreTest",
             "type": "shell",
-            "command": "docker compose exec api composer core-test",
+            "command": "docker compose exec portal-api composer core-test",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "TDD-API-CoreDox",
+            "label": "TDD-CoreDox",
             "type": "shell",
-            "command": "docker compose exec api composer core-dox",
+            "command": "docker compose exec portal-api composer core-dox",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "TDD-API-CoreCover",
+            "label": "TDD-CoreCover",
             "type": "shell",
-            "command": "sudo rm -rf logs/api/php/cover-core/; docker compose exec api composer core-cover; sudo chmod -R 777 logs/api/php/cover-core/; sudo chown -R falkon:falkon logs/api/php/cover-core/",
+            "command": "sudo rm -rf logs/php/cover-core/; docker compose exec portal-api composer core-cover; sudo chmod -R 777 logs/php/cover-core/; sudo chown -R falkon:falkon logs/php/cover-core/",
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "TDD-API-CorePath",
+            "label": "TDD-CorePath",
             "type": "shell",
-            "command": "sudo rm -rf logs/api/php/cover-core/; docker compose exec api composer core-path; sudo chmod -R 777 logs/api/php/cover-core/; sudo chown -R falkon:falkon logs/api/php/cover-core/",
+            "command": "sudo rm -rf logs/php/cover-core/; docker compose exec portal-api composer core-path; sudo chmod -R 777 logs/php/cover-core/; sudo chown -R falkon:falkon logs/php/cover-core/",
             "problemMatcher": [],
             "presentation": {
                 "clear": true

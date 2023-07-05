@@ -6,13 +6,11 @@ LABEL "org.opencontainers.image.version"="1.1"
 ### SETUP ###
 ########################################################################################################################
 WORKDIR /
-ARG ARG_DOMAIN
 ARG ARG_TIMEZONE
 ARG ARG_OS_VERSION="3.17"
-ARG ARG_OS_APK_MIRROR
+ARG ARG_OS_APK_MIRROR="https://mirror.uepg.br/alpine"
 
 ### CONTAINER ###
-ENV DOMAIN="${ARG_DOMAIN}"
 ENV ROOT_DATA="/data"
 ENV ROOT_LOGS="/logs"
 

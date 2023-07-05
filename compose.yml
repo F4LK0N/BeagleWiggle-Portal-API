@@ -1,14 +1,12 @@
 services:
   portal-api:
-    image: f4lk0n/fkn:news-portal-api
+    image: f4lk0n/fkn:${COMPOSE_PREFIX}portal-api
     container_name: ${COMPOSE_PREFIX}portal-api
     hostname: portal-api
     build:
       context: ./.docker
       args:
-        - ARG_DOMAIN=${PROJECT_DOMAIN}
         - ARG_TIMEZONE=${PROJECT_TIMEZONE}
-        - ARG_OS_APK_MIRROR=${ALPINE_APK_MIRROR}
     volumes:
       # Data
       - ./..data/:/data/
@@ -18,37 +16,32 @@ services:
       - ./src/:/src/
     networks:
       frontend:
-        ipv4_address: 172.19.0.120
+        ipv4_address: 172.21.0.120
       backend:
-        ipv4_address: 172.18.0.120
+        ipv4_address: 172.20.0.120
     expose:
       # Server
       - "80"
       - "443"
       # XDebug
-      - "9000"
       - "9003"
 
 networks:
   frontend:
     driver: bridge
-    name: news_frontend
+    name: ${COMPOSE_PREFIX}frontend
     internal: false
-    #attachable: true
     ipam:
       driver: default
       config:
-        - subnet: 172.19.0.0/16
-          gateway: 172.19.0.1
-          #ip_range: 172.27.0.0/24
+        - subnet: 172.21.0.0/16
+          gateway: 172.21.0.1
   backend:
     driver: bridge
-    name: news_backend
+    name: ${COMPOSE_PREFIX}backend
     internal: false
-    #attachable: true
     ipam:
       driver: default
       config:
-        - subnet: 172.18.0.0/16
-          gateway: 172.18.0.1
-          #ip_range: 172.27.0.0/24
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1

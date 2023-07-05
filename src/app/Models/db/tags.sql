@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS `tags` (
     FULLTEXT `IK_URL` (`url`),
 
     -- CONSTRAIN
-    UNIQUE KEY `UK_URL` (`url`),
-    UNIQUE KEY `UK_NAME` (`name`)
+    UNIQUE KEY `UK_NAME` (`name`),
+    UNIQUE KEY `UK_URL` (`url`)
 )
 ENGINE = InnoDB
 DEFAULT CHARSET = utf8mb4

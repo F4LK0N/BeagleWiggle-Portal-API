@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `news` (
         DEFAULT '',
     `content`
         TEXT
-        NOT NULL,
+        NULL,
 
 
     `source_name`

@@ -66,6 +66,10 @@ class Model extends PhalconModel
     {
         try{
             $result = parent::save();
+            if($result===false){
+                $messages = implode("\n", $this->getMessages());
+                throw new Exception ($messages);
+            }
             if(isset($this->id)){
                 $this->id = intval($this->id);
             }

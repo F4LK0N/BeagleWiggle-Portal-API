@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `news_images` (
         DEFAULT '0',
     `index`
         INT UNSIGNED
-        NOT NULL,
+        NOT NULL
         DEFAULT '0',
 
     `url`

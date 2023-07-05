@@ -40,7 +40,7 @@ echo "<pre>".
 
 function db_create_tables($database)
 {
-    $db = new \Core\Provider\DB(['db'=>$database]);
+    $db = Core\Provider\DB::INSTANCE($database);
     $dirArray = scandir(PATH_APP.'/Models/db/');
     foreach($dirArray as $file){
         if(substr($file, -4)!=='.sql'){
@@ -68,7 +68,7 @@ echo
 "### DB - CREATE TABLES - UNIT ###\n".
 "########################################\n";
 $_GET['RUN_MODE']="UNIT";
-db_create_tables('main_unit');
+db_create_tables('unit');
 
 
 
@@ -76,13 +76,14 @@ echo
 "### DB - CREATE TABLES - STRESS ###\n".
 "########################################\n";
 $_GET['RUN_MODE']="STRESS";
-db_create_tables('main_stress');
+db_create_tables('stress');
 
 
 
 $profiler = new \Core\Profiler(true);
 print ($profiler->format());
 echo
+"################################################################################\n".
+"### DEV - FINISHED #############################################################\n".
 "################################################################################\n";
-"### DEV - FINISHED #############################################################\n";
-"################################################################################\n";
+die;
