@@ -77,18 +77,10 @@ class App
     static private function LOAD_ROUTER()
     {
         new ROUTER([
-            //### PUBLIC ###
-            PATH_APP . '/Routes/PUBLIC/Index.php',
-            PATH_APP . '/Routes/PUBLIC/News.php',
-            PATH_APP . '/Routes/PUBLIC/Tags.php',
-            PATH_APP . '/Routes/PUBLIC/Categories.php',
-            //### AUTH ###
-            PATH_APP . '/Routes/PUBLIC/Auth.php',
-            //### ADM ###
-            PATH_APP . '/Routes/ADM/Index.php',
-            PATH_APP . '/Routes/ADM/Tags.php',
-            PATH_APP . '/Routes/ADM/Categories.php',
-            PATH_APP . '/Routes/ADM/News.php',
+            PATH_APP . '/Routes/Index.php',
+            PATH_APP . '/Routes/News.php',
+            PATH_APP . '/Routes/Tags.php',
+            PATH_APP . '/Routes/Categories.php',
         ]);
     }
     static private function LOAD_DB()
