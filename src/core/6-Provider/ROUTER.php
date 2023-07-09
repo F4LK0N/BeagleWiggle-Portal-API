@@ -49,7 +49,6 @@ class ROUTER
         self::$ROUTER = new PhalconRouter(false);
 
         //### DEFAULT ###
-        self::$ROUTER->setDefaultModule('PUBLIC');
         self::$ROUTER->setDefaultNamespace('App\Controllers');
         self::$ROUTER->setDefaultController('Index');
         self::$ROUTER->setDefaultAction('Index');
@@ -99,10 +98,6 @@ class ROUTER
     //##################################
     //### GETTERS ###
     //##################################
-    static public function MODULE()
-    {
-        return self::$ROUTER->getModuleName();
-    }
     static public function CONTROLLER()
     {
         return self::$ROUTER->getControllerName();

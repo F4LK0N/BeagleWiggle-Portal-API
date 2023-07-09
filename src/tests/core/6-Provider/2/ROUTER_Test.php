@@ -24,9 +24,6 @@ class ROUTER_Test extends FknTestCase
     public function testDefaultRoute()
     {
         $this->eq(
-            "PUBLIC", ROUTER::MODULE()
-        );
-        $this->eq(
             "Index", ROUTER::CONTROLLER()
         );
         $this->eq(
@@ -41,9 +38,6 @@ class ROUTER_Test extends FknTestCase
     {
         ROUTER::RUN('inexistent/route/');
         
-        $this->eq(
-            "PUBLIC", ROUTER::MODULE()
-        );
         $this->eq(
             "Index", ROUTER::CONTROLLER()
         );

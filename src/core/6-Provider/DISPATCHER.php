@@ -9,20 +9,18 @@ use App\App;
 
 class DISPATCHER
 {
-    static private ?object $MODULE     = null;
     static private ?object $CONTROLLER = null;
     static private ?object $ACTION     = null;
     static private ?array  $PARAMETERS = null;
 
 
 
-    static public function RUN (string $module = null,
-                                string $controller = null,
+    static public function RUN (string $controller = null,
                                 string $action = null,
                                 array  $parameters=null
     ): void
     {
-        self::SETUP($module, $controller, $action, $parameters);
+        self::SETUP($controller, $action, $parameters);
         self::VERIFY();
         self::SETUP_CONTROLLER();
         self::SETUP_ACTION();
@@ -32,27 +30,17 @@ class DISPATCHER
     
     
     
-    static private function SETUP ( string $module = null,
-                                    string $controller = null,
+    static private function SETUP ( string $controller = null,
                                     string $action = null,
                                     array  $parameters=null
     ){
         try
         {
-            if($module===null || $controller===null || $action===null){
-                $module     = ROUTER::MODULE();
+            if($controller===null || $action===null){
                 $controller = ROUTER::CONTROLLER();
                 $action     = ROUTER::ACTION();
                 $parameters = ROUTER::PARAMS();
             }
-            
-            self::$MODULE = (object)[
-                'target'     => $module,
-                'path'       => '',
-                'namespace'  => 'App\Controllers',
-                'class'      => '',
-                'instance'   => null,
-            ];
 
             self::$CONTROLLER = (object)[
                 'target'     => $controller,
@@ -85,33 +73,19 @@ class DISPATCHER
 
     static private function VERIFY()
     {
-        self::VERIFY_MODULE();
         self::VERIFY_CONTROLLER();
         self::VERIFY_ACTION();
-    }
-    static private function VERIFY_MODULE()
-    {
-        if(
-            self::$MODULE->target !== 'PUBLIC' && 
-            self::$MODULE->target !== 'ADM' && 
-            self::$MODULE->target !== 'AUTH'
-        ){
-            throw (new Exception('MODULE not found!!', eERROR::NOT_FOUND));
-        }
     }
     static private function VERIFY_CONTROLLER()
     {
         //### PATH ###
-        self::$CONTROLLER->path = PATH_APP.'/Controllers/'.self::$MODULE->target."/".self::$CONTROLLER->target.'/_Controller.php';
+        self::$CONTROLLER->path = PATH_APP.'/Controllers/'.self::$CONTROLLER->target.'/_Controller.php';
         if(!is_file(self::$CONTROLLER->path)){
             throw (new Exception('CONTROLLER not found!', eERROR::NOT_FOUND));
         }
 
         //### NAMESPACE ###
         self::$CONTROLLER->namespace = FILTER::REPLACE('/', '\\', self::$CONTROLLER->namespace);
-        if(self::$MODULE->target!=="PUBLIC"){
-            self::$CONTROLLER->namespace.= "\\".self::$MODULE->target;
-        }
 
         //### CLASS ##
         self::$CONTROLLER->class = self::$CONTROLLER->target;
@@ -124,14 +98,11 @@ class DISPATCHER
     }
     static private function VERIFY_ACTION()
     {
-        self::$ACTION->path  = PATH_APP.'/Controllers/'.self::$MODULE->target."/".self::$CONTROLLER->target.'/'.self::$ACTION->target.'Action.php';
+        self::$ACTION->path  = PATH_APP.'/Controllers/'.self::$CONTROLLER->target.'/'.self::$ACTION->target.'Action.php';
         if(!is_file(self::$ACTION->path)){
             throw (new Exception('ACTION not found!', eERROR::NOT_FOUND));
         }
         
-        if(self::$MODULE->target!=="PUBLIC"){
-            self::$ACTION->namespace.= "\\".self::$MODULE->target;
-        }
         self::$ACTION->namespace .= '\\' . self::$CONTROLLER->target;
         self::$ACTION->namespace = FILTER::REPLACE('/', '\\', self::$ACTION->namespace);
         

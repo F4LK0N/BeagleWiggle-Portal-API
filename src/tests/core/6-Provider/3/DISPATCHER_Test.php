@@ -3,25 +3,18 @@ use Core\Provider\DISPATCHER;
 
 class DISPATCHER_Test extends FknTestCase
 {
-    public function testVerifyNotFoundModule()
-    {
-        $this->expectException("Exception");
-        $this->expectExceptionCode(eERROR::NOT_FOUND);
-        DISPATCHER::RUN("XXX", "Index", "Index");
-    }
-    
     public function testVerifyNotFoundController()
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(eERROR::NOT_FOUND);
-        DISPATCHER::RUN("PUBLIC", "XXX", "Index");
+        DISPATCHER::RUN("XXX", "Index");
     }
     
     public function testVerifyNotFoundAction()
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(eERROR::NOT_FOUND);
-        DISPATCHER::RUN("PUBLIC", "Index", "XXX");
+        DISPATCHER::RUN("Index", "XXX");
     }
     
     //public function testVerifyDefaultModules()
